@@ -16,7 +16,7 @@ AWESOMENESS = [
 def start_here():
     """Home page."""
 
-    return "<!doctype html><html>Hi! This is the home page.<html>"
+    return "<!doctype html><html><a href='/hello'>Hi! This is the home page.</a><html>"
 
 
 @app.route('/hello')
@@ -32,7 +32,26 @@ def say_hello():
       <body>
         <h1>Hi There!</h1>
         <form action="/greet">
-          <label>What's your name? <input type="text" name="person"></label>
+          <label>What's your name?
+            <input type="text" name="person">
+          </label>
+          <br>
+          <br>
+          <label>What compliment would you like?<br>
+            <input type="radio" name="nice" value="awesome">Awesome<br>
+            <input type="radio" name="nice" value="terrific">Terrific<br>
+            <input type="radio" name="nice" value="fantastic">Fantastic<br>
+            <input type="radio" name="nice" value="neato">Neato<br>            
+            <input type="radio" name="nice" value="fantabulous">Fantabulous<br>
+            <input type="radio" name="nice" value="wowza">Wowza<br>           
+            <input type="radio" name="nice" value="oh-so-not-meh">Oh-So-Not-Meh<br>
+            <input type="radio" name="nice" value="brilliant">Brilliant<br>            
+            <input type="radio" name="nice" value="ducky">Ducky<br>
+            <input type="radio" name="nice" value="coolio">Coolio<br>            
+            <input type="radio" name="nice" value="incredible">Incredible<br>
+            <input type="radio" name="nice" value="wonderful">Wonderful<br>            
+            <input type="radio" name="nice" value="smashing">Smashing<br>
+            <input type="radio" name="nice" value="lovely">Lovely</label><br><br>
           <input type="submit">
         </form>
       </body>
@@ -45,8 +64,9 @@ def greet_person():
     """Get user by name."""
 
     player = request.args.get("person")
+    nice_thing = request.args.get("nice")
 
-    compliment = choice(AWESOMENESS)
+    # compliment = choice(AWESOMENESS)
 
     return """
     <!doctype html>
@@ -58,7 +78,8 @@ def greet_person():
         Hi %s I think you're %s!
       </body>
     </html>
-    """ % (player, compliment)
+    """ % (player, nice_thing)
+
 
 
 if __name__ == '__main__':
